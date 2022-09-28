@@ -4,7 +4,6 @@
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
-#include <iostream>
 #include <memory>
 #include <sstream>
 #include <stack>
@@ -39,7 +38,7 @@ void QueryTree::InsertInSubtree(std::unique_ptr<Node> &node, int64_t value) {
     node = std::make_unique<Node>(value);
     return;
   }
-  //std::cout << "\t" << node->value << std::endl;
+  // std::cout << "\t" << node->value << std::endl;
   if (value < node->value) {
     InsertInSubtree(node->left, value);
   } else if (value > node->value) {
@@ -78,12 +77,8 @@ void QueryTree::CountHeight(std::unique_ptr<Node> &node) noexcept {
 
 void QueryTree::Rotate(std::unique_ptr<Node> &node, int64_t value) noexcept {
   int64_t balance = 0;
-  if (node->left) {
-    balance += node->left->height;
-  }
-  if (node->right) {
-    balance -= node->right->height;
-  }
+  if (node->left) { balance += node->left->height; }
+  if (node->right) { balance -= node->right->height; }
   if (balance > 1 && value < node->left->value) { RotateRight(node); }
   if (balance < -1 && value > node->right->value) { RotateLeft(node); }
   if (balance > 1 && value > node->left->value) {
@@ -153,12 +148,8 @@ size_t QueryTree::GetNumberOfSmallerValues(int64_t value) {
       ptr_node = &(*ptr_node)->right;
     }
   }
-  if (!*ptr_node) {
-    std::ostringstream error;
-    error << "QueryTree doesn't contain value " << value;
-    throw std::invalid_argument(error.str());
-  }
-  return result + (*ptr_node)->left_branch_size;
+  if (*ptr_node) { result += (*ptr_node)->left_branch_size; }
+  return result;
 }
 
 QueryTree::Node::Node(int64_t val)

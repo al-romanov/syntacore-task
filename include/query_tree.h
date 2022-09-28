@@ -9,6 +9,8 @@
 namespace syntacore {
 
 class QueryTree final {
+  struct Node;
+
  public:
   QueryTree();
 
