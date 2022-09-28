@@ -55,6 +55,7 @@ Checks: >
   readability-*,
   -google-explicit-constructor,
   -misc-non-private-member-variables-in-classes,
+  -misc-no-recursion,
   -modernize-use-nodiscard,
   -modernize-use-trailing-return-type,
   -readability-identifier-length
