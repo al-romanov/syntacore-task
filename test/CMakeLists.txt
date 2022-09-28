@@ -16,7 +16,7 @@ add_executable(test ${TEST_SRCS})
 
 target_link_libraries(
   test
-  syntacore_test_lib
+  syntacore_task_lib
   GTest::gtest_main
 )
 
