@@ -30,7 +30,7 @@ This builds the syntacore-task executable and syntacore-task-lib library and tes
   ...
 ```
 ## Testing
-For testing solution you'll need to type next following commands.
+For testing solution you'll need to type following commands.
 ```
 # Go to the build/test directory
 $ cd build/test
