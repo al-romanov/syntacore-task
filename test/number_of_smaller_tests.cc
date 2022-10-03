@@ -32,13 +32,3 @@ TEST(NumberOfSmaller, RandomNumbersTest) {
     EXPECT_EQ(qt.GetNumberOfSmallerValues(v), i);
   }
 }
-
-TEST(NumberOfSmaller, UncorrectArgumentTest) {
-  bool exception_caught = false;
-  syntacore::QueryTree qt;
-  qt.Insert(34);
-  try {
-    qt.GetNumberOfSmallerValues(231);
-  } catch (std::invalid_argument &exc) { exception_caught = true; }
-  EXPECT_EQ(exception_caught, true);
-}
