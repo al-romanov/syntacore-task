@@ -24,9 +24,9 @@ class QueryTree final {
 
   void Insert(int64_t value);
 
-  int64_t NthSmallest(size_t n);
+  int64_t NthSmallest(size_t n) const;
 
-  size_t GetNumberOfSmallerValues(int64_t value);
+  size_t GetNumberOfSmallerValues(int64_t value) const noexcept;
 
  private:
   struct Node {
