@@ -115,7 +115,7 @@ void QueryTree::RotateRight(std::unique_ptr<Node> &node) noexcept {
   CountHeight(node);
 }
 
-int64_t QueryTree::NthSmallest(size_t n) {
+int64_t QueryTree::NthSmallest(size_t n) const {
   if (n == 0) {
     auto error = "QueryTree.NthSmallest supports n > 1 (0 given)";
     throw std::invalid_argument(error);
@@ -137,7 +137,7 @@ int64_t QueryTree::NthSmallest(size_t n) {
   return (*ptr_node)->value;
 }
 
-size_t QueryTree::GetNumberOfSmallerValues(int64_t value) {
+size_t QueryTree::GetNumberOfSmallerValues(int64_t value) const noexcept {
   size_t result = 0;
   auto *ptr_node = &root_;
   while (*ptr_node && (*ptr_node)->value != value) {
