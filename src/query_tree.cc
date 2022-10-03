@@ -76,7 +76,7 @@ void QueryTree::CountHeight(std::unique_ptr<Node> &node) noexcept {
 }
 
 void QueryTree::Rotate(std::unique_ptr<Node> &node, int64_t value) noexcept {
-  int64_t balance = 0;
+  int balance = 0;
   if (node->left) { balance += node->left->height; }
   if (node->right) { balance -= node->right->height; }
   if (balance > 1 && value < node->left->value) { RotateRight(node); }
@@ -155,18 +155,18 @@ size_t QueryTree::GetNumberOfSmallerValues(int64_t value) {
 QueryTree::Node::Node(int64_t val)
     : left(nullptr),
       right(nullptr),
+      value(val),
       left_branch_size(0),
       right_branch_size(0),
-      height(1),
-      value(val) {}
+      height(1) {}
 
 QueryTree::Node::Node(const Node &rhs)
     : left(nullptr),
       right(nullptr),
+      value(rhs.value),
       left_branch_size(rhs.left_branch_size),
       right_branch_size(rhs.right_branch_size),
-      height(rhs.height),
-      value(rhs.value) {
+      height(rhs.height) {
   if (rhs.left) { left = Copy(*rhs.left); }
   if (rhs.right) { right = Copy(*rhs.right); }
 }
@@ -174,10 +174,10 @@ QueryTree::Node::Node(const Node &rhs)
 QueryTree::Node::Node(QueryTree::Node &&rhs) noexcept
     : left(std::move(rhs.left)),
       right(std::move(rhs.right)),
+      value(rhs.value),
       left_branch_size(rhs.left_branch_size),
       right_branch_size(rhs.right_branch_size),
-      height(rhs.height),
-      value(rhs.value) {}
+      height(rhs.height) {}
 
 QueryTree::Node &QueryTree::Node::operator=(const QueryTree::Node &rhs) {
   if (this == &rhs) { return *this; }

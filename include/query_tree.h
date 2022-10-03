@@ -32,10 +32,10 @@ class QueryTree final {
   struct Node {
     std::unique_ptr<Node> left;
     std::unique_ptr<Node> right;
-    int64_t left_branch_size;
-    int64_t right_branch_size;
-    int64_t height;
     int64_t value;
+    size_t left_branch_size;
+    size_t right_branch_size;
+    int8_t height;
 
     Node(int64_t val = 0);
 
