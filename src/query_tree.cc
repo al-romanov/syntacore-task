@@ -15,7 +15,7 @@ namespace syntacore {
 QueryTree::QueryTree() : root_(nullptr) {}
 
 QueryTree::QueryTree(const QueryTree &rhs)
-    : root_(std::make_unique<Node>(*rhs.root_)) {}
+    : root_(std::make_unique<Node>(rhs.root_ ? *rhs.root_: nullptr)) {}
 
 QueryTree::QueryTree(QueryTree &&rhs) noexcept : root_(std::move(rhs.root_)) {}
 
@@ -38,7 +38,6 @@ void QueryTree::InsertInSubtree(std::unique_ptr<Node> &node, int64_t value) {
     node = std::make_unique<Node>(value);
     return;
   }
-  // std::cout << "\t" << node->value << std::endl;
   if (value < node->value) {
     InsertInSubtree(node->left, value);
   } else if (value > node->value) {
